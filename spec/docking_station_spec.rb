@@ -4,10 +4,14 @@ describe DockingStation do
   it { is_expected.to respond_to :release_bike }
 
   it 'release_bike should create Bike class' do
+    bike = Bike.new
+    subject.dock(bike)
     expect(subject.release_bike).to be_instance_of(Bike)
   end
 
   it 'when the instance of Bike calls working? should be true' do
+    bike = Bike.new
+    subject.dock(bike)
     expect(subject.release_bike).to be_working
   end
 
