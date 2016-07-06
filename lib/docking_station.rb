@@ -2,8 +2,9 @@ require 'bike.rb'
 
 class DockingStation
   attr_reader :bike
+
   def release_bike
-    @bike = nil
+    fail "no bikes available" unless @bike
     Bike.new
   end
 

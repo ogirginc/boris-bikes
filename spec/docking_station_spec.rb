@@ -7,7 +7,7 @@ describe DockingStation do
     expect(subject.release_bike).to be_instance_of(Bike)
   end
 
-  it 'when the instance of Bike calls workign? should be true' do
+  it 'when the instance of Bike calls working? should be true' do
     expect(subject.release_bike).to be_working
   end
 
@@ -20,7 +20,9 @@ describe DockingStation do
     expect(subject.dock(bike)).to eq bike
   end
 
-  it 'docking stations not to release bikes when there are none available' do
-    expect { subject.dock(bike) }.to raise_error
+  describe '#release_bike' do
+    it 'docking stations not to release bikes when there are none available' do
+      expect { subject.release_bike }.to raise_error "no bikes available"
+    end
   end
 end
