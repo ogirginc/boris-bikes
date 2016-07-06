@@ -12,16 +12,15 @@ describe DockingStation do
   end
 
   it "dock the user's bike at the docking station" do
-    expect(subject).to respond_to :return_bike
+    expect(subject).to respond_to :dock
   end
 
   it 'user docked the bike at the docking station' do
     bike = Bike.new
-    expect(subject.return_bike(bike)).to eq bike
+    expect(subject.dock(bike)).to eq bike
   end
 
-#  it 'check if there are bikes at the docking station' do
-#    bike = Bike.new
-#    expect(subject.return_bike(bike).bike).to eq true
-#  end
+  it 'docking stations not to release bikes when there are none available' do
+    expect { subject.dock(bike) }.to raise_error
+  end
 end
