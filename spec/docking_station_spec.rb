@@ -16,9 +16,12 @@ describe DockingStation do
   end
 
   it 'user docked the bike at the docking station' do
-    expect(subject.return_bike).to be true
+    bike = Bike.new
+    expect(subject.return_bike(bike)).to eq bike
   end
-  it 'check if there are bikes at the docking station' do
-    expect(subject.release_bike(@)
-  end
+
+#  it 'check if there are bikes at the docking station' do
+#    bike = Bike.new
+#    expect(subject.return_bike(bike).bike).to eq true
+#  end
 end
