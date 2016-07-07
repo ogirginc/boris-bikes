@@ -12,3 +12,5 @@ Note: Work in progress.
 * Mannie Gill
 
 * Nomi Vos
+* Oggie
+* Jess
