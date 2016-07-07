@@ -8,13 +8,13 @@ class DockingStation
 # end
 
   def release_bike
-    Bike.new
+    fail 'No bikes available' unless @bike
+    @bike
+    #raise ArgumentError, 'No bike available' if Bike.new == nil?
+    #raise ArgumentError, 'No bike available' if bike == 0
   end
 
   def dock(bike)
     @bike = bike
   end
-
-
-
 end
