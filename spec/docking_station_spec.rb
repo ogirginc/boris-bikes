@@ -15,10 +15,11 @@ describe DockingStation do
     expect(bike).to respond_to(:dock)
   end
 
-  # it 'shows the bikes that are docked' do
-  #   bike = nil
-  #   expect(DockingStation.new.dock(bike)).to eq(@bike)
-  # end
+  it 'shows the bikes that are docked' do
+    bike = Bike.new
+    subject.dock(bike)
+    expect(subject.bikes).to eq [bike]
+  end
 
   it { is_expected.to respond_to(:dock).with(1).argument }
 
@@ -41,7 +42,7 @@ describe DockingStation do
 
   it 'Not to accept more bikes than their capacity.' do
     bike = Bike.new
-    subject.dock(bike)
+    20.times { subject.dock(bike) }
     expect { subject.dock(bike) }.to raise_error 'Capacity full'
   end
 end
