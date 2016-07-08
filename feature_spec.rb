@@ -1,5 +1,7 @@
 require './lib/docking_station'
 
 station = DockingStation.new
-20.times { station.dock(Bike.new) }
-station.dock(Bike.new)    # should give an error
+bike = Bike.new
+bike.report_broken
+bike.broken?
+station.dock(bike)
