@@ -22,10 +22,6 @@ describe DockingStation do
 
   it { is_expected.to respond_to(:dock).with(1).argument }
 
-  it 'raise an error if no bikes available' do
-    expect { raise 'No bikes available' }.to raise_error(unless @bike)
-  end
-
   describe '#release_bike' do
     it 'releases a bike' do
      bike = Bike.new
@@ -41,5 +37,11 @@ describe DockingStation do
       # remember subject == DockingStation.new
       expect { subject.release_bike }.to raise_error 'No bikes available'
     end
+  end
+
+  it 'Not to accept more bikes than their capacity.' do
+    bike = Bike.new
+    subject.dock(bike)
+    expect { subject.dock(bike) }.to raise_error 'Capacity full'
   end
 end
