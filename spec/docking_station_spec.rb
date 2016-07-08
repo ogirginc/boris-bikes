@@ -42,7 +42,7 @@ describe DockingStation do
 
   it 'Not to accept more bikes than their capacity.' do
     bike = Bike.new
-    20.times { subject.dock(bike) }
+    DockingStation::DEFAULT_CAPACITY.times { subject.dock(bike) }
     expect { subject.dock(bike) }.to raise_error 'Capacity full'
   end
 end
