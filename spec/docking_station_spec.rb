@@ -6,7 +6,7 @@ describe DockingStation do
 
   it 'release a working bike' do
     # bike = subject.release_bike
-    bike = Bike.new
+    bike = double(:bike)
     expect(bike).to be_working
   end
 
@@ -16,7 +16,17 @@ describe DockingStation do
   end
 
   it 'shows the bikes that are docked' do
-    bike = Bike.new
+    bike = double(:bike)
+    expect(bike).to be_working
+  end
+
+  it 'docks a bike' do
+    bike = DockingStation.new
+    expect(bike).to respond_to(:dock)
+  end
+
+  it 'shows the bikes that are docked' do
+    bike = double(:bike)
     subject.dock(bike)
     expect(subject.bikes).to eq [bike]
   end
@@ -25,7 +35,7 @@ describe DockingStation do
 
   describe '#release_bike' do
     it 'releases a bike' do
-     bike = Bike.new
+     bike = double(:bike)
      subject.dock(bike)
      # we want to release the bike we docked
      expect(subject.release_bike).to eq bike
@@ -46,7 +56,7 @@ describe DockingStation do
 
   describe 'initialization' do
     subject { DockingStation.new }
-    let(:bike) { Bike.new }
+    let(:bike) { double :bike }
     it 'defaults capacity' do
       described_class::DEFAULT_CAPACITY.times do
         subject.dock(bike)
