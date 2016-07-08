@@ -40,9 +40,28 @@ describe DockingStation do
     end
   end
 
-  it 'Not to accept more bikes than their capacity.' do
-    bike = Bike.new
-    DockingStation::DEFAULT_CAPACITY.times { subject.dock(bike) }
-    expect { subject.dock(bike) }.to raise_error 'Capacity full'
+  it 'able to specify a larger capacity when necessary.' do
+    expect(DockingStation).to respond_to(:new).with(1).argument
+  end
+
+  describe 'initialization' do
+    subject { DockingStation.new }
+    let(:bike) { Bike.new }
+    it 'defaults capacity' do
+      described_class::DEFAULT_CAPACITY.times do
+        subject.dock(bike)
+      end
+      expect { subject.dock(bike) }.to raise_error 'Capacity full'
+    end
+  end
+
+  it 'allows us to dock 30 bikes' do
+    station = DockingStation.new(30)
+    expect(station.capacity).to eq(30)
+  end
+
+  it 'allows us to dock 20 (default) bikes' do
+    station = DockingStation.new
+    expect(station.capacity).to eq(DockingStation::DEFAULT_CAPACITY)
   end
 end
